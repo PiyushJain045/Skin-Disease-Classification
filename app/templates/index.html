@@ -1,9 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>  
-    <title> Skin Disease Classification </title>
+    <title>Skin Disease Classification</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        label {
+            display: block;
+            margin-top: 10px;
+        }
+        img {
+            margin-top: 15px;
+            max-width: 300px;
+            border: 1px solid #ccc;
+        }
+    </style>
 </head>
 <body>
-    <h1> Hello World </h1>
+
+    <h1>Skin Disease Classification</h1>
+
+    <form action="{% url 'home' %}" method="POST"  id="skinForm" enctype="multipart/form-data">
+        {% csrf_token %}
+        <label for="age">Age:</label>
+        <input type="number" id="age" name="age" min='2' max='100' required>
+
+        <label for="gender">Gender:</label>
+        <select id="gender" name="gender" required>
+            <option value="">Select</option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+            <option value="other">Other</option>
+        </select>
+
+        <label for="image">Infected Skin Image:</label>
+        <input type="file" id="image" name="image" accept="image/*" required>
+
+        <img id="preview" src="#" alt="Image Preview" style="display:none;">
+
+        <br><br>
+        <button type="submit">Submit</button>
+    </form>
+
+    <script>
+        // Show image preview
+        document.getElementById('image').addEventListener('change', function (event) {
+            const file = event.target.files[0];
+            const preview = document.getElementById('preview');
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    preview.src = e.target.result;
+                    preview.style.display = 'block';
+                };
+                reader.readAsDataURL(file);
+            } else {
+                preview.style.display = 'none';
+            }
+        });
+    </script>
+
 </body>
 </html>
