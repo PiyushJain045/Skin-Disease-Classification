@@ -4,7 +4,7 @@ matplotlib
 numpy
 djangorestframework
 ipykernel
-tensorflow
+tensorflow==2.14.0
 opencv-python
 google-generativeai
 python-dotenv
