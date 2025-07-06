@@ -29,7 +29,7 @@ The API can be accessed at:
 
 ```
 
-[http://127.0.0.1:8000/api/v1/predict/](http://127.0.0.1:8000/api/v1/predict/)
+http://127.0.0.1:8000/api/v1/predict/
 
 ```
 
@@ -52,14 +52,13 @@ Upon submission, it returns the predicted disease and AI-generated structured ad
    ```bash
    git clone https://github.com/PiyushJain045/AiForm-Generator.git
    cd AiForm-Generator
-````
 
 2. **Setup a Virtual Environment**:
 
-   ```bash
+  ```bash
    python -m venv venv
    source venv/bin/activate  # On Windows: venv\Scripts\activate
-   ```
+ ````
 
 3. **Install Dependencies**:
 
