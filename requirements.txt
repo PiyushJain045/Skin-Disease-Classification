@@ -8,4 +8,5 @@ tensorflow
 opencv-python
 google-generativeai
 python-dotenv
-
+gunicorn
+Jinja2
