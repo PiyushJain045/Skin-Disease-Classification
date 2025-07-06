@@ -1,7 +1,6 @@
 django
 pandas
 matplotlib
-numpy==1.23.5
 djangorestframework
 ipykernel
 tensorflow==2.14.0
