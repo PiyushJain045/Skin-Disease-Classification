@@ -3,11 +3,11 @@ pandas
 matplotlib
 djangorestframework
 ipykernel
-tensorflow==2.14.0
+tensorflow==2.19
 opencv-python
 google-generativeai
 python-dotenv
 gunicorn
 Jinja2
-numpy==1.26.4
+numpy
 pybind11==2.12.0
