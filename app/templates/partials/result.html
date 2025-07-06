@@ -1,3 +1,7 @@
 {% if result %}
-    <h3>Result:{{ result }}</h3>
+    <h3 class="result-heading">Result: {{ result }}</h3>
+
+    <div class="advice-box">
+        {{ advice|linebreaks }}
+    </div>
 {% endif %}

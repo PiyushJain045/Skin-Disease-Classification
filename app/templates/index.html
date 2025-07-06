@@ -1,38 +1,26 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>  
     <title>Skin Disease Classification</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            padding: 20px;
-        }
-        label {
-            display: block;
-            margin-top: 10px;
-        }
-        img {
-            margin-top: 15px;
-            max-width: 300px;
-            border: 1px solid #ccc;
-        }
-    </style>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
     <script 
         src="https://cdn.jsdelivr.net/npm/htmx.org@2.0.6/dist/htmx.min.js" 
         integrity="sha384-Akqfrbj/HpNVo8k11SXBb6TlBWmXXlYQrCSqEWmyKJe+hDm3Z/B2WVG4smwBkRVm" 
         crossorigin="anonymous"
     ></script>
-
 </head>
 <body>
 
     <h1>Skin Disease Classification</h1>
-    <form hx-post="{% url 'home' %}"
-          hx-target="#result-container"
-          hx-swap="innerHTML"
-          enctype="multipart/form-data"
-    
-    >    
+     <div class="main-container">
+        <div class="form-section">
+            <form hx-post="{% url 'home' %}"
+                hx-target="#result-container"
+                hx-swap="innerHTML"
+                enctype="multipart/form-data"
+                id="skinForm"
+            >    
         {% csrf_token %}
         <label for="age">Age:</label>
         <input type="number" id="age" name="age" min='2' max='100'>
@@ -53,28 +41,59 @@
         <br><br>
         <button type="submit">Submit</button>
     </form>
-
-<div id="result-container">
-<h4>Enter your data to get the results and remedies</h4>
 </div>
 
-    <script>
-        // Show image preview
-        document.getElementById('image').addEventListener('change', function (event) {
-            const file = event.target.files[0];
-            const preview = document.getElementById('preview');
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function (e) {
-                    preview.src = e.target.result;
-                    preview.style.display = 'block';
-                };
-                reader.readAsDataURL(file);
-            } else {
-                preview.style.display = 'none';
-            }
-        });
-    </script>
+ <div class="result-section">
+    <div id="result-container">
+        <h4>Submit patient information for diagnostic analysis and treatment recommendations.</h4>
+    </div>
+ </div>
+</div>
+
+
+<script>
+    // Show image preview
+    document.getElementById('image').addEventListener('change', function (event) {
+        const file = event.target.files[0];
+        const preview = document.getElementById('preview');
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                preview.src = e.target.result;
+                preview.style.display = 'block';
+            };
+            reader.readAsDataURL(file);
+        } else {
+            preview.style.display = 'none';
+        }
+    });
+</script>
+
+<div id="spinner" style="
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 8px solid #f3f3f3;
+    border-top: 8px solid #3498db;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    animation: spin 1s linear infinite;
+    z-index: 9999;
+"></div>
+
+<script>
+    document.getElementById('skinForm').addEventListener('submit', function () {
+        document.getElementById('spinner').style.display = 'block';
+    });
+
+    // Hide spinner after content loads (HTMX support)
+    document.body.addEventListener('htmx:afterSwap', function () {
+        document.getElementById('spinner').style.display = 'none';
+    });
+</script>
 
 </body>
 </html>

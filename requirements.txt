@@ -6,3 +6,6 @@ djangorestframework
 ipykernel
 tensorflow
 opencv-python
+google-generativeai
+python-dotenv
+
