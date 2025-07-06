@@ -1,4 +1,4 @@
-- [Skin Disease Classification](https://aiformgenerator.onrender.com/)  | Note: not optimized for mobile
+- [Skin Disease Classification](https://skin-disease-classification-1-kp01.onrender.com/)  | Note: not optimized for mobile
 
 # Skin Disease Classification System
 
