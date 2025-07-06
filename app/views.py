@@ -19,11 +19,11 @@ class Home(View):
         gender = request.POST.get('gender')
         image = request.FILES.get('image')
 
-        # print(age, gender, image)
+        print(age, gender, image)
         result,_ = predict_image(image)
 
         response = {
             "result": result,
         }
 
-        return render(request, "index.html", response)
+        return render(request, "partials/result.html", response)
