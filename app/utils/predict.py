@@ -1,8 +1,11 @@
 import cv2
 import numpy as np
 from tensorflow.keras.models import load_model
+import os 
+from django.conf import settings
 
-model = load_model("../Model/model.h5")
+MODEL_PATH = os.path.join(settings.BASE_DIR, 'Model', 'model.h5')
+model = load_model(MODEL_PATH)
 
 class_names = ['Acne and Rosacea Photos',
  'Actinic Keratosis Basal Cell Carcinoma and other Malignant Lesions',
@@ -29,8 +32,13 @@ class_names = ['Acne and Rosacea Photos',
  'Warts Molluscum and other Viral Infections']
 
 def predict_image(image_path):
-    # Read image using OpenCV
-    test_img = cv2.imread(image_path)
+    print("INSIDE PREDICT IMAGE")
+
+    # Convert InMemoryUploadedFile to numpy array
+    file_bytes = np.asarray(bytearray(image_path.read()), dtype=np.uint8)
+    test_img = cv2.imdecode(file_bytes, cv2.IMREAD_COLOR)
+
+    # Convert to RGB
     test_img = cv2.cvtColor(test_img, cv2.COLOR_BGR2RGB)
 
     # Resize to match model input
